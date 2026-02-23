@@ -1,4 +1,3 @@
-jiwer
-pandas
-rouge-score 
-numpy
+pandas>=2.0.0
+jiwer>=3.0.0
+numpy>=1.24.0

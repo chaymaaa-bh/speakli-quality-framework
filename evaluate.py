@@ -3,7 +3,7 @@ import pandas as pd
 from jiwer import wer, cer
 from difflib import SequenceMatcher
 import os
-import numpy as np
+import re
 
 class SpeakliEvaluator:
     def __init__(self, file_path):
@@ -14,38 +14,41 @@ class SpeakliEvaluator:
             self.data = json.load(f)
         
         self.results = []
-        self.error_catalog = [] # Pour stocker les détails des erreurs critiques
+        self.error_catalog = []
 
     def normalize_value(self, v):
-        """Nettoyage pour éviter les faux négatifs (38,5 -> 38.5)."""
+        """Standardise les nombres (38,5 -> 38.5) pour éviter les faux négatifs."""
         try:
             cleaned = str(v).replace(',', '.').replace(' ', '').strip()
             return round(float(cleaned), 1)
         except (ValueError, TypeError):
             return str(v).lower().strip()
 
-    def calculate_stt_metrics(self, gt, pred):
-        if not pred or str(pred).strip() == "":
-            return 1.0, 1.0
-        gt_c, pred_c = str(gt).lower(), str(pred).lower()
-        return round(wer(gt_c, pred_c), 4), round(cer(gt_c, pred_c), 4)
+    def token_overlap(self, gt, pred):
+        """PÉPITE : Mesure le Rappel (Recall) des mots-clés essentiels."""
+        def get_tokens(t): return set(re.sub(r"[^\w\s]", " ", str(t).lower()).split())
+        gt_t, pr_t = get_tokens(gt), get_tokens(pred)
+        if not gt_t: return 1.0
+        return round(len(gt_t & pr_t) / len(gt_t), 4)
+
+    def check_clinical_safety(self, gt_text, pred_obj):
+        """PÉPITE : Scanner de sécurité pour détecter les termes sensibles inventés."""
+        critical_terms = ["stade 2", "stade 3", "chute", "laxatif", "eva 7", "39°", "escarre"]
+        pred_text = str(pred_obj).lower()
+        gt_text = str(gt_text).lower()
+        
+        # Si un terme sensible est dans le résultat mais pas dans l'audio original
+        return [p for p in critical_terms if p in pred_text and p not in gt_text]
 
     def evaluate_json_content(self, entry):
-        """Analyse fine du JSON selon le type de tâche."""
         gt = entry['json_gt']
         pred_raw = entry['json_pred']
         task_type = entry['task_type']
         
         try:
-            # 1. Tentative de réparation/parsing
-            if isinstance(pred_raw, str):
-                clean_pred = pred_raw.strip()
-                if not clean_pred.endswith('}'): clean_pred += '}'
-                pred = json.loads(clean_pred)
-            else:
-                pred = pred_raw
+            # Parsing robuste (gère les strings et les dicts)
+            pred = json.loads(pred_raw) if isinstance(pred_raw, str) else pred_raw
 
-            # 2. Logique spécifique par tâche
             if task_type == 'vitals':
                 gt_list = gt.get('vitals', [])
                 pred_list = pred.get('vitals', [])
@@ -53,100 +56,87 @@ class SpeakliEvaluator:
                 gt_v = { (v.get('name', '').lower(), self.normalize_value(v.get('value', ''))) for v in gt_list }
                 pred_v = { (v.get('name', '').lower(), self.normalize_value(v.get('value', ''))) for v in pred_list }
                 
-                # Check des erreurs critiques (différence de valeur)
-                for g_name, g_val in gt_v:
-                    found = False
-                    for p_name, p_val in pred_v:
-                        if g_name == p_name:
-                            found = True
-                            if g_val != p_val:
-                                self.error_catalog.append({
-                                    'id': entry['id'], 'type': 'CRITICAL_VALUE_MISMATCH',
-                                    'desc': f"{g_name}: GT={g_val} vs PRED={p_val}"
-                                })
-                    if not found:
-                        self.error_catalog.append({'id': entry['id'], 'type': 'MISSING_DATA', 'desc': f"Constante {g_name} oubliée"})
-
-                intersection = gt_v & pred_v
-                return len(intersection) / len(gt_v) if gt_v else 1.0
+                # Identification des erreurs de sécurité (chiffres faux)
+                for gn, gv in gt_v:
+                    matched = False
+                    for pn, pv in pred_v:
+                        if gn == pn:
+                            matched = True
+                            if gv != pv:
+                                self.error_catalog.append({'id': entry['id'], 'type': 'VALUE_MISMATCH', 'desc': f"{gn}: {gv} vs {pv}"})
+                    if not matched:
+                        self.error_catalog.append({'id': entry['id'], 'type': 'MISSING_DATA', 'desc': f"Constante {gn} oubliée"})
+                
+                return len(gt_v & pred_v) / len(gt_v) if gt_v else 1.0
             
             else:
-                # Pour Narrative et Targeted : Similarité sémantique
-                gt_str = json.dumps(gt, sort_keys=True)
-                pred_str = json.dumps(pred, sort_keys=True)
-                return SequenceMatcher(None, gt_str, pred_str).ratio()
+                # Utilisation du Token Overlap pour mesurer la fidélité de l'information
+                return self.token_overlap(gt, pred)
                 
         except Exception as e:
-            self.error_catalog.append({'id': entry['id'], 'type': 'JSON_PARSE_ERROR', 'desc': str(e)})
+            self.error_catalog.append({'id': entry['id'], 'type': 'PARSE_ERROR', 'desc': str(e)})
             return 0.0
 
     def run(self):
         for entry in self.data:
-            # Métriques STT
-            stt_wer, stt_cer = self.calculate_stt_metrics(entry['transcript_gt'], entry['transcript_pred'])
+            # 1. Qualité Audio (STT)
+            stt_wer, stt_cer = round(wer(entry['transcript_gt'], entry['transcript_pred']), 4), 0.0
             
-            # Sécurité Patient (Levenshtein ratio)
-            res_gt = str(entry['resident_gt']).strip().lower()
-            res_pred = str(entry['resident_pred']).strip().lower()
-            res_sim = round(SequenceMatcher(None, res_gt, res_pred).ratio(), 4)
+            # 2. Sécurité Patient (Similarité Nom)
+            res_sim = round(SequenceMatcher(None, str(entry['resident_gt']).lower(), str(entry['resident_pred']).lower()).ratio(), 4)
             
-            # Qualité Extraction
+            # 3. Qualité Structuration (JSON) + Hallucinations Cliniques
             json_qual = self.evaluate_json_content(entry)
+            hallus = self.check_clinical_safety(entry['transcript_gt'], entry['json_pred'])
             
-            # Hallucination (basé sur la longueur et contenu)
-            is_hallu = "Yes" if len(str(entry['json_pred'])) > len(str(entry['json_gt'])) * 1.5 else "No"
-            if is_hallu == "Yes":
-                self.error_catalog.append({'id': entry['id'], 'type': 'HALLUCINATION', 'desc': "Contenu généré trop verbeux"})
+            if hallus:
+                for h in hallus:
+                    self.error_catalog.append({'id': entry['id'], 'type': 'CRITICAL_HALLUCINATION', 'desc': f"Invention: {h}"})
 
             self.results.append({
                 "id": entry['id'],
                 "task_type": entry['task_type'],
                 "wer": stt_wer,
-                "cer": stt_cer,
                 "res_similarity": res_sim,
-                "extraction_quality": round(json_qual, 4),
-                "hallucination": is_hallu
+                "extraction_quality": json_qual,
+                "hallu_critique": "YES" if hallus else "NO"
             })
 
     def generate_recommendations(self, summary):
         recs = []
         if summary.loc['vitals', 'extraction_quality'] < 0.7:
-            recs.append("🎯 Priorité : Améliorer l'extraction des constantes (Vitals). Vérifier le formatage des nombres.")
+            recs.append("🎯 PRIORITÉ : Fiabiliser l'extraction numérique (Vitals).")
         if summary['wer'].mean() > 0.4:
-            recs.append("🎙️ STT : Le taux d'erreur est élevé. Envisager un fine-tuning ou un meilleur micro soignant.")
-        if summary['res_similarity'].mean() < 0.9:
-            recs.append("👤 Patient : Risque d'erreur d'identification. Implémenter un Fuzzy Matching sur la base résidents.")
+            recs.append("🎙️ STT : WER élevé (>40%). Fine-tuner le modèle sur le vocabulaire médical.")
+        if summary['res_similarity'].mean() < 0.95:
+            recs.append("👤 PATIENT : Risque d'identification. Implémenter un référentiel patient (liste blanche).")
         return recs
 
     def generate_reports(self):
         df = pd.DataFrame(self.results)
         summary = df.groupby('task_type').agg({
-            'wer': 'mean', 'cer': 'mean', 'res_similarity': 'mean', 'extraction_quality': 'mean'
+            'wer': 'mean', 'res_similarity': 'mean', 'extraction_quality': 'mean'
         }).round(3)
 
-        print("\n" + "═"*60)
-        print("🚀 SPEAKLI AI EVALUATION - DASHBOARD")
-        print("═"*60)
+        print("\n" + "═"*65 + "\n🚀 SPEAKLI QUALITY FRAMEWORK - ULTIMATE DASHBOARD\n" + "═"*65)
         print(summary)
-        print("═"*60)
+        print("═"*65)
 
-        # Top Erreurs
         if self.error_catalog:
-            print("\n🔍 ANALYSE DES ERREURS CRITIQUES :")
+            print("\n🚨 ALERTES DE SÉCURITÉ (TOP ERREURS) :")
             err_df = pd.DataFrame(self.error_catalog)
             print(err_df['type'].value_counts().to_string())
 
-        # Recommandations
         print("\n💡 RECOMMANDATIONS STRATÉGIQUES :")
         for r in self.generate_recommendations(summary):
             print(f"- {r}")
 
-        # Sauvegarde
+        # Exportations
         os.makedirs('outputs', exist_ok=True)
-        df.to_csv('outputs/detailed_report.csv', index=False)
+        df.to_csv('outputs/ultimate_report.csv', index=False)
         with open('outputs/summary.json', 'w', encoding='utf-8') as f:
             json.dump(summary.to_dict(orient='index'), f, indent=4)
-        print(f"\n✅ Rapports générés dans /outputs/")
+        print(f"\n✅ Analyse terminée. Fichiers disponibles dans /outputs/")
 
 if __name__ == "__main__":
     evaluator = SpeakliEvaluator('data/dataset_eval_speakli.json')

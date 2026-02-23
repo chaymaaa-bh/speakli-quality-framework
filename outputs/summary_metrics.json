@@ -1,0 +1,23 @@
+{
+    "narrative": {
+        "wer": 0.477,
+        "cer": 0.105,
+        "res_match": 0.7,
+        "res_similarity": 0.938,
+        "extraction_quality": 0.684
+    },
+    "targeted": {
+        "wer": 0.452,
+        "cer": 0.101,
+        "res_match": 0.8,
+        "res_similarity": 0.952,
+        "extraction_quality": 0.785
+    },
+    "vitals": {
+        "wer": 0.59,
+        "cer": 0.155,
+        "res_match": 0.667,
+        "res_similarity": 0.956,
+        "extraction_quality": 0.519
+    }
+}
