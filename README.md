@@ -32,3 +32,10 @@ Pour lancer l'analyse complète du dataset par défaut :
 ```bash
 python evaluate.py
 ```
+
+## Structure des Rapports
+
+Après exécution, les résultats sont exportés dans le répertoire /outputs :
+* **final_report.csv :**  Rapport granulaire par ID permettant d'isoler chaque échec d'extraction.
+* **summary.json :** Métriques agrégées par type de tâche (vitals, narrative, targeted) pour une vision macroscopique.
+
