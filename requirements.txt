@@ -1,3 +1,10 @@
+# --- Moteur d'évaluation ---
 pandas>=2.0.0
 jiwer>=3.0.0
 numpy>=1.24.0
+
+# --- Interface Dashboard ---
+streamlit>=1.30.0
+
+# --- Génération de rapports ---
+fpdf>=1.7.2
