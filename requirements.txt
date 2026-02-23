@@ -1,0 +1,4 @@
+jiwer
+pandas
+rouge-score 
+numpy

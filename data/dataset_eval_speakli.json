@@ -1,0 +1,747 @@
+[
+  {
+    "id": "v01",
+    "task_type": "vitals",
+    "resident_gt": "Mme Leroy",
+    "resident_pred": "Mme Leroy",
+    "transcript_gt": "Relevé pour Mme Leroy: poids 62,5 kilos ce matin. Hydratation faible, a bu environ 500 millilitres sur la journée.",
+    "transcript_pred": "Releve pour Mme Leroi poids 62 5 kilos se matin. Hydratation faible a bu environ 500 millilitres sur la journee.",
+    "json_gt": {
+      "vitals": [
+        {
+          "name": "Poids",
+          "value": 62.5,
+          "unit": "kg"
+        },
+        {
+          "name": "Hydratation",
+          "value": 500,
+          "unit": "mL"
+        }
+      ]
+    },
+    "json_pred": {
+      "vitals": [
+        {
+          "name": "Poids",
+          "value": 62.5,
+          "unit": "kg"
+        },
+        {
+          "name": "Hydratation",
+          "value": 500,
+          "unit": "mL"
+        }
+      ]
+    }
+    },
+  {
+    "id": "t01",
+    "task_type": "targeted",
+    "resident_gt": "Mme Martin",
+    "resident_pred": "Mme Martin",
+    "transcript_gt": "Mme Martin a mangé environ la moitié du repas ce midi, a bu un verre d'eau. Dentier mis avant le repas. Encourager l'hydratation.",
+    "transcript_pred": "Mme Martin a mange environ la moitie du repas ce midi, a bu un verre d eau. Dentier mis avant le repas. Encourager hydratation.",
+    "json_gt": {
+      "target": "Alimentation",
+      "data": "A mangé ~50% du repas. Hydratation: 1 verre d'eau.",
+      "actions": "Dentier mis avant le repas. Encourager hydratation.",
+      "results": "À suivre sur les prochains repas."
+    },
+    "json_pred": {
+      "target": "Alimentation",
+      "data": "A mangé la moitié du repas ce midi. A bu un verre d'eau.",
+      "actions": "Encourager hydratation.",
+      "results": "Suivi sur les prochains repas."
+    }
+  },
+  {
+    "id": "n01",
+    "task_type": "narrative",
+    "resident_gt": "M. Bernard",
+    "resident_pred": "M. Bernard",
+    "transcript_gt": "M. Bernard s'est plaint de douleur lombaire lors du lever. Mise au fauteuil ok. Massage léger réalisé. Douleur diminuée.",
+    "transcript_pred": "M. Bernair s'est plaint de douleur lombaire lors du lever. Mise o fauteuil ok. Massage leger realise. Douleur diminuee.",
+    "json_gt": {
+      "sections": [
+        {
+          "title": "Douleur",
+          "content": "Douleur lombaire au lever."
+        },
+        {
+          "title": "Mobilité",
+          "content": "Mise au fauteuil OK."
+        },
+        {
+          "title": "Soins",
+          "content": "Massage léger réalisé."
+        },
+        {
+          "title": "Résultat",
+          "content": "Douleur diminuée."
+        }
+      ]
+    },
+    "json_pred": {
+      "sections": [
+        {
+          "title": "Douleur",
+          "content": "Douleur lombaire au lever après une petite chute."
+        },
+        {
+          "title": "Activité",
+          "content": "Mise au fauteuil."
+        },
+        {
+          "title": "Soins",
+          "content": "Massage léger."
+        },
+        {
+          "title": "Résultat",
+          "content": "Douleur diminuée."
+        }
+      ]
+    }
+  },
+  {
+    "id": "t02",
+    "task_type": "targeted",
+    "resident_gt": "Mme Martin",
+    "resident_pred": "Mme Nartha",
+    "transcript_gt": "Mme Martin présente une rougeur au sacrum, peau intacte, début d'escarre. Pansement hydrocolloïde posé. Changement de position toutes les 2 heures.",
+    "transcript_pred": "Mme Nartain presente une rougeur sacrum peau intacte debut d escarre. Pansement hydrocolide pose. Changement de position toutes les 2 heures.",
+    "json_gt": {
+      "target": "Escarre",
+      "data": "Rougeur au sacrum, peau intacte (début d'escarre).",
+      "actions": "Pansement hydrocolloïde posé. Repositionnement toutes les 2h.",
+      "results": "À surveiller l'évolution de la rougeur."
+    },
+    "json_pred": {
+      "target": "Escarre",
+      "data": "Rougeur au sacrum, escarre stade 2.",
+      "actions": "Pansement hydrocolloïde posé et photo prise. Repositionnement toutes les 2h.",
+      "results": "À surveiller l'évolution."
+    }
+  },
+  {
+    "id": "n02",
+    "task_type": "narrative",
+    "resident_gt": "M. Bernard",
+    "resident_pred": "M. Bernard",
+    "transcript_gt": "M. Bernard a été plus confus aujourd'hui, désorientation temporelle. Hydratation insuffisante (a bu environ 2 verres). Encouragé à boire. Famille appelée.",
+    "transcript_pred": "M. Bernard a ete plus confus aujourd hui, desorientation temporelle. Hydratation insuffisante (a bu environ 2 verres). Encourage a boire. Famille appelee.",
+    "json_gt": {
+      "sections": [
+        {
+          "title": "Cognition",
+          "content": "Confusion accrue, désorientation temporelle."
+        },
+        {
+          "title": "Hydratation",
+          "content": "Hydratation insuffisante (~2 verres). Encouragé à boire."
+        },
+        {
+          "title": "Famille",
+          "content": "Famille contactée."
+        }
+      ]
+    },
+    "json_pred": {
+      "sections": [
+        {
+          "title": "Cognition",
+          "content": "Confusion accrue, désorientation temporelle.."
+        },
+        {
+          "title": "Hydratation",
+          "content": "Hydratation insuffisante, a bu environ 2 verres. Encourager hydratation."
+        }
+      ]
+    }
+  },
+  {
+    "id": "v02",
+    "task_type": "vitals",
+    "resident_gt": "Mme Leroy",
+    "resident_pred": "Mme Leroy",
+    "transcript_gt": "Constantes pour Mme Leroy chambre 305: tension 135/80, température 37.2, saturation 96 pour cent. RAS.",
+    "transcript_pred": "Constantes pour Mme Leroy chbr 305 tension 135,80 temperature 37.2 saturation 96 pour cent. RAS.",
+    "json_gt": {
+      "vitals": [
+        {
+          "name": "Tension",
+          "value": "135/80",
+          "unit": "mmHg"
+        },
+        {
+          "name": "Température",
+          "value": 37.2,
+          "unit": "°C"
+        },
+        {
+          "name": "SpO2",
+          "value": 96,
+          "unit": "%"
+        }
+      ]
+    },
+    "json_pred": {
+      "vitals": [
+        {
+          "name": "Tension",
+          "value": "135,80",
+          "unit": "mmHg"
+        },
+        {
+          "name": "Température",
+          "value": 37.2,
+          "unit": "°C"
+        },
+        {
+          "name": "SpO2",
+          "value": 96,
+          "unit": "%"
+        }
+      ]
+    }
+  },
+  {
+    "id": "t03",
+    "task_type": "targeted",
+    "resident_gt": "Mme Martin",
+    "resident_pred": "Mme Martin",
+    "transcript_gt": "Nuit agitée pour Mme Martin, réveils fréquents. Somnolence en matinée. Pas de chute signalée.",
+    "transcript_pred": "Nuit agitee pour Mme Martain reveils frequents en matinee. Pas de chute signalee.",
+    "json_gt": {
+      "target": "Sommeil",
+      "data": "Nuit agitée, réveils fréquents. Pas de chute",
+      "actions": "",
+      "results": ""
+    },
+    "json_pred":{
+      "target": "Sommeil",
+      "data": "Nuit agitée, réveils fréquents.",
+      "actions": "Surveillance en journée.",
+      "results": "Pas de chute en matinée"
+      } 
+  },
+  {
+    "id": "n03",
+    "task_type": "narrative",
+    "resident_gt": "M. Bernard",
+    "resident_pred": "M. Bernard",
+    "transcript_gt": "M. Bernard a eu des nausées en fin d'après-midi, pas de vomissements. Prise de constantes réalisée, température normale. IDE prévenue.",
+    "transcript_pred": "M. Bernard a eu des nausees en fin d apres-midi pas de vomissements. Prise de constantes realisee temperature normale. idle prevenue.",
+    "json_gt": {
+      "sections": [
+        {
+          "title": "Digestif",
+          "content": "Nausées en fin d'après-midi, sans vomissements."
+        },
+        {
+          "title": "Constantes",
+          "content": "Température normale. Constantes prises."
+        },
+        {
+          "title": "Actions",
+          "content": "IDE prévenue."
+        }
+      ]
+    },
+    "json_pred": 
+    {
+      "sections": [
+        {
+          "title": "Nausées",
+          "content": "Nausées en fin d'après-midi, sans vomissements."
+        },
+        {
+          "title": "Constantes",
+          "content": "Température normale. Constantes prises."
+        },
+        {
+          "title": "Actions",
+          "content": "IDE prévenue."
+        }
+      ]
+    }
+    },
+  {
+    "id": "v03",
+    "task_type": "vitals",
+    "resident_gt": "Mme Leroy",
+    "resident_pred": "Mme Rey",
+    "transcript_gt": "Relevé mictions pour Mme Leroy: 3 mictions aujourd'hui, selles absentes.",
+    "transcript_pred": "Releve mictions pour Mme Le roi 4 mictions aujourd hui selles absentes.",
+    "json_gt": {
+      "vitals": [
+        {
+          "name": "Mictions",
+          "value": 3,
+          "unit": "fois/jour"
+        },
+        {
+          "name": "Selles",
+          "value": 0,
+          "unit": ""
+        }
+      ]
+    },
+    "json_pred": {
+      "vitals": [
+        {
+          "name": "Mictions",
+          "value": 4,
+          "unit": "fois/jour"
+        },
+        {
+          "name": "Selles",
+          "value": 0,
+          "unit": ""
+        }
+      ]
+    }
+  },
+  {
+    "id": "n04",
+    "task_type": "narrative",
+    "resident_gt": "M. Bernard",
+    "resident_pred": "M. Bernard",
+    "transcript_gt": "M. Bernard chambre 118. Ce matin toilette complète au lavabo, peau fragile mais intacte. Mobilisation au fauteuil avec verticalisateur. A participé à l'atelier mémoire. Humeur stable.",
+    "transcript_pred": "M. Bernard chambre 118. se matin toilete complete lavabo peau fragile mais intacte. Mobilisation au fauteuil avec verticalisateure. A participe a l atellier memoire. Humeur stable.",
+    "json_gt": {
+      "sections": [
+        {
+          "title": "Toilette",
+          "content": "Toilette complète au lavabo. Peau fragile mais intacte."
+        },
+        {
+          "title": "Mobilité",
+          "content": "Mobilisation au fauteuil avec verticalisateur."
+        },
+        {
+          "title": "Activités",
+          "content": "Participation à l'atelier mémoire."
+        },
+        {
+          "title": "Humeur",
+          "content": "Humeur stable."
+        }
+      ]
+    },
+    "json_pred": {
+      "sections": [
+        {
+          "title": "Soins",
+          "content": "Toilete au lavabo, peau fragile. Refus partiel."
+        },
+        {
+          "title": "Mobilité",
+          "content": "Passage au fauteuil avec verticalisateure."
+        },
+        {
+          "title": "Activités",
+          "content": "Atelier mémoire."
+        },
+        {
+          "title": "Humeur",
+          "content": "Stable."
+        }
+      ]
+    }
+  },
+  {
+    "id": "v04",
+    "task_type": "vitals",
+    "resident_gt": "Mme Leroy",
+    "resident_pred": "Mme Leroy",
+    "transcript_gt": "Constantes Mme Leroy: température 38.1 ce soir, frissons. IDE prévenue.",
+    "transcript_pred": "Constantes Mme Leroy temperature trente set point 1 ce soir frissons. IDE prevenue.",
+    "json_gt": {
+      "vitals": [
+        {
+          "name": "Température",
+          "value": 38.1,
+          "unit": "°C"
+        }
+      ]
+    },
+    "json_pred": {
+      "vitals": [
+        {
+          "name": "Température",
+          "value": 37.1,
+          "unit": "°C"
+        }
+      ]
+    }
+  },
+  {
+    "id": "t04",
+    "task_type": "targeted",
+    "resident_gt": "Mme Martin",
+    "resident_pred": "Mme Martin",
+    "transcript_gt": "Mme Martin chambre 214 se plaint de douleur au genou droit depuis ce matin, douleur à 6 sur 10. Doliprane donné à 10h. Douleur redescendue à 3 sur 10. Surveillance cet après-midi.",
+    "transcript_pred": "Mme Martain chambre 214 se plaint de douleur o genou droit depuis matin douleur 6 sur 10. Polyprane done à 10h. Douleur redescendue a sur 10. Surveillance cet après-midi.",
+    "json_gt": {
+      "target": "Douleur",
+      "data": "Douleur genou droit depuis ce matin, EVA 6/10.",
+      "actions": "Doliprane administré à 10h.",
+      "results": "EVA 3/10 après prise. Surveillance cet après-midi."
+    },
+    "json_pred": {
+      "target": "Douleur",
+      "data": "Douleur au genou droit depuis ce matin évaluée à 6/10, redescendu ensuite.",
+      "actions": "Polyprane donné à 10h.",
+      "results": "Surveillance cet après-midi."
+    }
+  },
+    {
+      "id": "v05",
+      "task_type": "vitals",
+      "resident_gt": "M. Duval",
+      "resident_pred": "M. Duval",
+      "transcript_gt": "Constantes pour M. Duval chambre 210 : TA 110/70, FC 92, SpO2 94 %, température 36,8. Dyspnée légère à l'effort. IDE prévenue.",
+      "transcript_pred": "Constantes pour M Duval chbr 210 TA 110 70 FC 92 sp o deux 94 pour cent temperature 36 8. Disnee legere a l effort. ide prevenue.",
+      "json_gt": {
+        "vitals": [
+          { "name": "Tension", "value": "110/70", "unit": "mmHg" },
+          { "name": "Fréquence cardiaque", "value": 92, "unit": "bpm" },
+          { "name": "SpO2", "value": 94, "unit": "%" },
+          { "name": "Température", "value": 36.8, "unit": "°C" }
+        ]
+      },
+      "json_pred": {
+        "vitals": [
+          { "name": "Tension", "value": "110/70", "unit": "mmHg" },
+          { "name": "Frequence cardiaque", "value": 92, "unit": "bpm" },
+          { "name": "Température", "value": 36.8, "unit": "°C" }
+        ]
+      }
+    },
+    {
+      "id": "t05",
+      "task_type": "targeted",
+      "resident_gt": "Mme Fontaine",
+      "resident_pred": "Mme Fonten",
+      "transcript_gt": "Mme Fontaine présente une agitation en fin de journée, déambulation et refus de douche. Réassurance verbale, mise en place d'un temps calme. Humeur apaisée après 20 minutes.",
+      "transcript_pred": "Mme Fonten presente une agitation fin de journee deambulation et refus de douche. Reassurance verbale mise en place d un tan calme. Umeur apaisee apres 20 minute.",
+      "json_gt": {
+        "target": "Comportement",
+        "data": "Agitation en fin de journée avec déambulation, refus de douche.",
+        "actions": "Réassurance verbale + temps calme.",
+        "results": "Apaisement après ~20 min."
+      },
+      "json_pred": {
+        "target": "Comportement",
+        "data": "Agitation, déambulation, refus de douche.",
+        "actions": "Réassurance verbale.",
+        "results": "Apaisement après 2 min."
+      }
+    },
+    {
+      "id": "n05",
+      "task_type": "narrative",
+      "resident_gt": "M. Girard",
+      "resident_pred": "M. Girard",
+      "transcript_gt": "M. Girard a refusé le petit-déjeuner. A bu un café. Douleur épaule gauche signalée lors de l'habillage. Application de froid 10 minutes. Participation partielle à l'atelier motricité.",
+      "transcript_pred": "M Girar a refuse le petit dej. a bu un cafe. Douleur epaule gauche signalee lors de l habillage. Aplication de froid 10 minute. Partisipation partielle atelier motricite.",
+      "json_gt": {
+        "sections": [
+          { "title": "Alimentation", "content": "Refus du petit-déjeuner. A bu un café." },
+          { "title": "Douleur", "content": "Douleur épaule gauche à l'habillage." },
+          { "title": "Soins", "content": "Application de froid 10 min." },
+          { "title": "Activités", "content": "Participation partielle à l'atelier motricité." }
+        ]
+      },
+      "json_pred": {
+        "sections": [
+          { "title": "Alimentation", "content": "Refus du petit-déjeuner. A bu un café." },
+          { "title": "Douleur", "content": "Douleur épaule gauche à l'habillage." },
+          { "title": "Soins", "content": "Application de froid 10 min." },
+          { "title": "Activités", "content": "Atelier motricité." }
+        ]
+      }
+    },
+    {
+      "id": "t06",
+      "task_type": "targeted",
+      "resident_gt": "M. Lemaire",
+      "resident_pred": "M. Lemaire",
+      "transcript_gt": "M. Lemaire présente une douleur à la miction, urines troubles. Bandelette urinaire positive leucocytes et nitrites. IDE informée, ECBU à prévoir.",
+      "transcript_pred": "M Lemaire presente une douleur a la miction urines trouble. Bandelette urinaire positive leucocite et nitrite. ide informe, e c b u a prevoir.",
+      "json_gt": {
+        "target": "Infection urinaire",
+        "data": "Dysurie, urines troubles. BU + leucocytes/nitrites.",
+        "actions": "IDE informée. ECBU à prévoir.",
+        "results": ""
+      },
+      "json_pred": {
+        "target": "Infection urinaire",
+        "data": "Urines troubles, BU positive.",
+        "actions": "IDE informée.",
+        "results": "En attente des résultats."
+      }
+    },
+    {
+      "id": "n06",
+      "task_type": "narrative",
+      "resident_gt": "Mme Robert",
+      "resident_pred": "Mme Mobaire",
+      "transcript_gt": "Mme Robert a dormi par intermittence cette nuit. Le matin, toilette partielle avec aide, peau sèche sur les tibias. Mise de crème émolliente. A marché 20 mètres avec déambulateur.",
+      "transcript_pred": "Mme Robaire a dormi par intermitence cette nuit. le matin toilete partielle avec aide, peau seche sur les tibia. Mise de creme emoliente. A marche 20 metre avec deambulateur.",
+      "json_gt": {
+        "sections": [
+          { "title": "Sommeil", "content": "Sommeil intermittent." },
+          { "title": "Toilette", "content": "Toilette partielle avec aide." },
+          { "title": "Peau", "content": "Peau sèche tibias. Crème émolliente appliquée." },
+          { "title": "Mobilité", "content": "Marche 20 m avec déambulateur." }
+        ]
+      },
+      "json_pred": "{ \"sections\": [ {\"title\":\"Sommeil\",\"content\":\"Sommeil intermittent.\"}, {\"title\":\"Peau\",\"content\":\"Peau seche tibias. Creme appliquee\"} ] "
+    },
+    {
+      "id": "v06",
+      "task_type": "vitals",
+      "resident_gt": "M. Nguyen",
+      "resident_pred": "M. Nguen",
+      "transcript_gt": "Diurèse pour M. Nguyen : poche urinaire à 450 mL sur 24h. Urines claires. Surveillance hydratation.",
+      "transcript_pred": "Duree pour M Nguen poche urinaire a 450 ml sur 24h. urine claire. Surveillence hydratation.",
+      "json_gt": {
+        "vitals": [
+          { "name": "Diurèse", "value": 450, "unit": "mL/24h" }
+        ]
+      },
+      "json_pred": {
+      }
+    },
+    {
+      "id": "t07",
+      "task_type": "targeted",
+      "resident_gt": "Mme Caron",
+      "resident_pred": "Mme Caron",
+      "transcript_gt": "Mme Caron présente un risque de chute : marche instable, besoin d'aide au lever. Mise en place ceinture de marche et rappel sonnette. Pas de chute aujourd'hui.",
+      "transcript_pred": "Mme Caron presente risque de chute marche instable besoin d aide o lever. Mise en place ceinture de marche et rapel sonette. Pas de chute ojourdhui.",
+      "json_gt": {
+        "target": "Risque de chute",
+        "data": "Marche instable, besoin d'aide au lever. Pas de chute aujourd'hui.",
+        "actions": "Mise en place d'une ceinture de marche + rappel utilisation sonnette.",
+        "results": ""
+      },
+      "json_pred": {
+        "target": "Risque de chute",
+        "data": "Marche instable, besoin d'aide au lever",
+        "actions": "Ceinture de marche et Rappel sonnette.",
+        "results": "Pas de chute."
+      }
+    },
+    {
+      "id": "n07",
+      "task_type": "narrative",
+      "resident_gt": "M. Moreau",
+      "resident_pred": "M. Moreo",
+      "transcript_gt": "M. Moreau a eu une séance de kiné ce matin. Douleur genou droit pendant les exercices. Pause, application de chaud. A terminé la séance. Appétit correct au déjeuner.",
+      "transcript_pred": "M Moreo a eu une seance de kine se matin. Douleur genou droit pendant les exersises. Pause aplication de cho. A termine la seance. Apetit corect au dejeuner.",
+      "json_gt": {
+        "sections": [
+          { "title": "Douleur", "content": "Douleur genou droit pendant exercices." },
+          { "title": "Soins", "content": "Séance de kiné réalisée ce matin. Pause + application de chaud." },
+          { "title": "Alimentation", "content": "Appétit correct au déjeuner." }
+        ]
+      },
+      "json_pred": {
+        "sections": [
+          { "title": "Kiné", "content": "Séance de kiné." },
+          { "title": "Douleur", "content": "Douleur genou droit." },
+          { "title": "Soins", "content": "Application de chaud." },
+          { "title": "Alimentation", "content": "Appétit correct au déjeuner." }
+        ]
+      }
+    },
+    {
+      "id": "v07",
+      "task_type": "vitals",
+      "resident_gt": "Mme Salaun",
+      "resident_pred": "Mme Salaun",
+      "transcript_gt": "TA pour Mme Salaun : 160/95 à 18h, céphalées. Repos au lit, contrôle TA dans 30 minutes. IDEC informée.",
+      "transcript_pred": "TA pour Mme Salaun 160 95 a 18h sefalee. Repo o lit, controle ta dans 30 minute. idec informe.",
+      "json_gt": {
+        "vitals": [
+          { "name": "Tension", "value": "160/95", "unit": "mmHg" }
+        ]
+      },
+      "json_pred": {
+        "vitals": [
+          { "name": "Tension", "value": "160/95", "unit": "mmHg" },
+          { "name": "Température", "value": 30.0, "unit": "°C" }
+        ]
+      }
+    },
+    {
+      "id": "t08",
+      "task_type": "targeted",
+      "resident_gt": "M. Cohen",
+      "resident_pred": "M. Cohen",
+      "transcript_gt": "M. Cohen a une plaie au talon droit, suintement modéré. Nettoyage au sérum physiologique, pansement alginate posé. Photo prise pour suivi. Prochain changement demain.",
+      "transcript_pred": "M Cohan a une plaie o talon droit suintement modere. Nettoyage au serum fisiologique, pansement alginate pose. Photo prise pour suivie. Prochain changement demain.",
+      "json_gt": {
+        "target": "Plaie",
+        "data": "Plaie talon droit, suintement modéré.",
+        "actions": "Nettoyage sérum physiologique + pansement alginate + photo prise pour suivi.",
+        "results": "Changement prévu demain."
+      },
+      "json_pred": {
+        "target": "Plaie",
+        "data": "Plaie talon droit, suintement modéré.",
+        "actions": "Pansement alginate posé et photo prise pour suivi.",
+        "results": "Changement prévu demain. Douleur EVA 7/10."
+      }
+    },
+    {
+      "id": "n08",
+      "task_type": "narrative",
+      "resident_gt": "Mme Diallo",
+      "resident_pred": "Mme Dilo",
+      "transcript_gt": "Mme Diallo a présenté des fausses routes lors de la prise de boissons. Texture épaissie donnée. Surveillance pendant le repas. Saturation restée stable.",
+      "transcript_pred": "Mme Dilo a presente des fausse route lors de la prise de boisson. Texture epesi donne. Surveillence pendant le repas. Saturation reste stable.",
+      "json_gt": {
+        "sections": [
+          { "title": "Déglutition", "content": "Fausses routes lors de la prise de boissons." },
+          { "title": "Adaptation", "content": "Texture épaissie donnée. Surveillance pendant le repas." },
+          { "title": "Constantes", "content": "Saturation restée stable." }
+        ]
+      },
+      "json_pred": {
+        "sections": [
+          { "title": "Déglutition", "content": "Fausses routes." },
+          { "title": "Alimentation", "content": "Surveillance pendant le repas" },
+          { "title": "Constantes", "content": "SpO2 restée stable.." }
+        ]
+      }
+    },
+    {
+      "id": "t09",
+      "task_type": "targeted",
+      "resident_gt": "Mme Hutin",
+      "resident_pred": "Mme Hutin",
+      "transcript_gt": "Mme Hutin présente une constipation depuis 3 jours. Abdomen souple, pas de douleur. Hydratation encouragée, pruneaux proposés. IDE informée pour éventuel laxatif.",
+      "transcript_pred": "Mme Hutin presente une constipassion depuis 3 jour. Abdomen souple pas de douleur. Hydratation encouragee, pruno propose. ide informe pour eventuel laxatif.",
+      "json_gt": {
+        "target": "Transit",
+        "data": "Constipation 3 jours, abdomen souple, pas de douleur.",
+        "actions": "Encourager hydratation, pruneaux. IDE informée pour laxatif si besoin.",
+        "results": ""
+      },
+      "json_pred": {
+        "target": "Transit",
+        "data": "Constipation 3 jours.",
+        "actions": "Laxatif administré (hydratation, pruneaux), IDE informée",
+        "results": "Abdomen souple, pas de douleur."
+      }
+    },
+    {
+      "id": "n09",
+      "task_type": "narrative",
+      "resident_gt": "M. Leclerc",
+      "resident_pred": "M. Leclerc",
+      "transcript_gt": "M. Leclerc a eu une dyspnée au repos en début d'après-midi. Installation demi-assise, O2 2 L/min. SpO2 remontée à 95 %. Médecin appelé.",
+      "transcript_pred": "M Lecler a eu une dispnee o repos debut d apres midi. Instalation demi assise, o2 2 l min. sp o deux remonte a 95 pourcent. Medecin appele.",
+      "json_gt": {
+        "sections": [
+          { "title": "Respiration", "content": "Dyspnée au repos début d'après-midi." },
+          { "title": "Actions", "content": "Installation demi-assise. O2 2 L/min." },
+          { "title": "Constantes", "content": "SpO2 remontée à 95%." },
+          { "title": "Alerte", "content": "Médecin appelé." }
+        ]
+      },
+      "json_pred": {
+        "sections": [
+          { "title": "Respiration", "content": "Dyspnée au repos début d'après-midi." },
+          { "title": "Actions", "content": "Installation demi-assise. O2 2 L/min." },
+          { "title": "Constantes", "content": "SpO2 remontée à 95%." },
+          { "title": "Alerte", "content": "Médecin appelé." }
+        ]
+      }
+    },
+    {
+      "id": "v08",
+      "task_type": "vitals",
+      "resident_gt": "Mme Bernard",
+      "resident_pred": "Mme Bernard",
+      "transcript_gt": "Douleur pour Mme Bernard : EVA 7/10 au changement de position. Paracétamol 1 g donné à 14h. Réévaluation à 15h : EVA 4/10.",
+      "transcript_pred": "Douleur pour Mme Bernard eva 7 sur 10 o changement de position. Paracetamole 1 g donne a 14h. Reevaluation a 15h eva 4 sur 10.",
+      "json_gt": {
+        "vitals": [
+          { "name": "Douleur", "value": "7/10", "unit": "EVA" }
+        ]
+      },
+      "json_pred": {
+        "vitals": [
+          { "name": "Douleur", "value": "4/10", "unit": "EVA" }
+        ]
+      }
+    },
+    {
+      "id": "t10",
+      "task_type": "targeted",
+      "resident_gt": "M. Simon",
+      "resident_pred": "M. Simon",
+      "transcript_gt": "M. Simon présente une toux productive, encombrement bronchique. Kiné respi sollicitée. Hydratation augmentée. Surveillance température et SpO2.",
+      "transcript_pred": "M Simon presente une toux productive encombrement bronshique. Kine respi sollicite. Hydratation augmente. Surveillence temperature et sp o deux.",
+      "json_gt": {
+        "target": "Respiration",
+        "data": "Toux productive, encombrement bronchique.",
+        "actions": "Kiné respi sollicitée. Hydratation augmentée.",
+        "results": "Surveillance température et SpO2."
+      },
+      "json_pred": {
+        "target": "Respiration",
+        "data": "Toux productive.",
+        "actions": "Kiné respi sollicitée.",
+        "results": "Surveillance température."
+      }
+    },
+    {
+      "id": "n10",
+      "task_type": "narrative",
+      "resident_gt": "Mme Vasseur",
+      "resident_pred": "Mme Vasseur",
+      "transcript_gt": "Mme Vasseur a eu un épisode d'hypotension au lever. Installation au fauteuil, jambes surélevées. TA remontée à 105/65. Collation donnée. Pas de malaise ensuite.",
+      "transcript_pred": "Mme Vasseur a eu un episode d hipotansion o lever. Instalation o fauteuil jambe sureleve. TA remonte a 105 65. Colation donne. Pas de malaise ensuite.",
+      "json_gt": {
+        "sections": [
+          { "title": "Cardio", "content": "Hypotension au lever." },
+          { "title": "Actions", "content": "Fauteuil + jambes surélevées. Collation donnée." },
+          { "title": "Constantes", "content": "TA remontée à 105/65." },
+          { "title": "Évolution", "content": "Pas de malaise ensuite." }
+        ]
+      },
+      "json_pred": {
+        "sections": [
+          { "title": "Cardio", "content": "Hypotension au lever." },
+          { "title": "Actions", "content": "Fauteuil + jambes surélevées." },
+          { "title": "Constantes", "content": "TA 150/95." },
+          { "title": "Évolution", "content": "Pas de malaise." }
+        ]
+      }
+    },
+    {
+      "id": "v09",
+      "task_type": "vitals",
+      "resident_gt": "M. Boulanger",
+      "resident_pred": "M. Boulenger",
+      "transcript_gt": "Bilan d'hydratation pour M. Boulanger : 1,2 L sur 24h. Urines foncées.",
+      "transcript_pred": "Bilan d hydratation pour M Boulenger 1.2 l sur 24h. Urine fonce.",
+      "json_gt": {
+        "vitals": [
+          { "name": "Hydratation", "value": 1200, "unit": "mL/24h" }
+        ]
+      },
+      "json_pred": {
+        "vitals": [
+          { "name": "Hydratation", "value": 1200, "unit": "mL/24h" }
+        ]
+      }
+    }
+
+]

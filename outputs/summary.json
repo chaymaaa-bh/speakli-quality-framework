@@ -1,0 +1,27 @@
+{
+    "wer":{
+        "narrative":0.477,
+        "targeted":0.452,
+        "vitals":0.59
+    },
+    "cer":{
+        "narrative":0.105,
+        "targeted":0.101,
+        "vitals":0.155
+    },
+    "res_match":{
+        "narrative":0.7,
+        "targeted":0.8,
+        "vitals":0.667
+    },
+    "res_similarity":{
+        "narrative":0.938,
+        "targeted":0.952,
+        "vitals":0.956
+    },
+    "json_quality":{
+        "narrative":1.0,
+        "targeted":1.0,
+        "vitals":0.519
+    }
+}
