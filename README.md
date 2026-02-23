@@ -28,10 +28,11 @@ Le framework nécessite Python 3.8+ et les bibliothèques listées dans `require
 pip install -r requirements.txt
 ```
 ### Exécution
-Pour lancer l'analyse complète du dataset par défaut :
+Pour lancer l'analyse complète avec l'interface interactive :
 ```bash
-python evaluate.py
+streamlit run app.py
 ```
+
 
 ## Structure des Rapports
 
