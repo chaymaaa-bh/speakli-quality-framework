@@ -26,3 +26,9 @@ Le framework nécessite Python 3.8+ et les bibliothèques listées dans `require
 
 ```bash
 pip install -r requirements.txt
+
+
+### Exécution
+Pour lancer l'analyse complète du dataset par défaut :
+```bash
+python evaluate.py
